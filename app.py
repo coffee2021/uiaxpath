@@ -1467,17 +1467,18 @@ def _install_excepthook():
 
 
 def _ensure_dpi():
-    """让 Qt 在高 DPI 下清晰显示，同时不发 SetProcessDpiAwarenessContext 警告。
+    """固定 Qt 的缩放取整策略，并压掉启动时那条无法避免的 DPI 警告。
 
-    在 QApplication 之前用老 API SetProcessDPIAware() 把进程设为 DPI 感知，
-    Qt 因此不会再尝试调 SetProcessDpiAwarenessContext（那就是警告的来源），
-    但仍会按屏幕 DPI 做逻辑坐标缩放（125% 下 dpr=1.25）。
-    代价：Qt 逻辑坐标 ≠ UIA 物理坐标，高亮绘制时需把 rect 除以 dpr。
+    uiautomation 在 import 时已把进程设为 per-monitor DPI 感知，而 Windows
+    只允许设置一次，Qt 随后想升级到 PER_MONITOR_AWARE_V2 必然收到"拒绝访问"，
+    所以这里不再尝试设置感知（那次调用注定无效）：进程已是 per-monitor 感知，
+    Qt 仍按屏幕 DPI 做逻辑坐标缩放（125% 下 dpr=1.25），代价只是 Qt 逻辑坐标
+    ≠ UIA 物理坐标，高亮绘制时需把 rect 除以 dpr。剩下的只有两件事：
+    - 固定缩放取整策略，避免系统取整把 dpr 改成 1 或 2，破坏高亮换算；
+    - 关掉 qt.qpa.window 的警告，否则控制台会出现吓人的"拒绝访问"。
     """
-    try:
-        ctypes.windll.user32.SetProcessDPIAware()
-    except Exception:
-        pass
+    # 两个环境变量都必须在 QApplication 之前设置：Qt 构造时读取日志/缩放配置
+    os.environ.setdefault("QT_LOGGING_RULES", "qt.qpa.window.warning=false")
     os.environ.setdefault("QT_SCALE_FACTOR_ROUNDING_POLICY", "PassThrough")
 
 
