@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "uiaxpath"
+dynamic = ["version"]
+description = "XPath-like query engine for Windows UI Automation trees, powered by in-memory UIA snapshots"
+readme = "uiaxpath/README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "coffee2021", email = "coffeemeow22@163.com" }]
+keywords = ["uia", "uiautomation", "xpath", "windows", "automation", "gui-testing"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "uiautomation>=2.0.29",
+    "comtypes>=1.4.17",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "build", "twine"]
+
+[project.urls]
+Homepage = "https://github.com/coffee2021/uiaxpath"
+Repository = "https://github.com/coffee2021/uiaxpath"
+Issues = "https://github.com/coffee2021/uiaxpath/issues"
+
+[tool.setuptools]
+packages = ["uiaxpath"]
+
+[tool.setuptools.dynamic]
+version = { attr = "uiaxpath.__version__" }
