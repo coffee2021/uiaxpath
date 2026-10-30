@@ -8,7 +8,8 @@ import sys
 import time
 import subprocess
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# 从 tests/ 回到仓库根目录，保证未安装本包时也能直接运行
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from uiaxpath import snapshot, find_all
 from uiaxpath.snapshot import UiaNode

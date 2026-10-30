@@ -1,5 +1,8 @@
 # UIA XPath 测试工具
 
+[![PyPI](https://img.shields.io/pypi/v/uiaxpath.svg)](https://pypi.org/project/uiaxpath/)
+[![CI](https://github.com/coffee2021/uiaxpath/actions/workflows/ci.yml/badge.svg)](https://github.com/coffee2021/uiaxpath/actions/workflows/ci.yml)
+
 Windows 桌面 UIA 控件的 XPath 测试工具（PySide6），定位是 FlaUInspect 的中文轻量替代：可视化浏览控件树、编写并测试 XPath、实时高亮定位结果，一键生成可落地的 Python 自动化代码。
 
 ## 功能
@@ -94,15 +97,15 @@ uiaxpath/              引擎包（快照/XPath/候选/映射）
 requirements.txt       锁定依赖版本
 启动.bat                无控制台启动
 app.ico                软件图标
-test_*.py              三套测试
+tests\test_uiaxpath.py  三套测试
 ```
 
 ## 测试
 
 ```bash
-python -X utf8 test_uiaxpath.py   # 引擎语法
-python -X utf8 test_extras.py     # 扩展属性 + 候选生成
-python -X utf8 test_picker.py     # 拾取映射
+python -X utf8 tests\test_uiaxpath.py   # 引擎语法
+python -X utf8 tests\test_extras.py     # 扩展属性 + 候选生成
+python -X utf8 tests\test_picker.py     # 拾取映射
 ```
 
 ## 设计决策与已知限制

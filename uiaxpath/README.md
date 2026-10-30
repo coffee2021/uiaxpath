@@ -1,5 +1,10 @@
 # uiaxpath
 
+[![PyPI](https://img.shields.io/pypi/v/uiaxpath.svg)](https://pypi.org/project/uiaxpath/)
+[![Python](https://img.shields.io/pypi/pyversions/uiaxpath.svg)](https://pypi.org/project/uiaxpath/)
+[![License](https://img.shields.io/pypi/l/uiaxpath.svg)](https://github.com/coffee2021/uiaxpath/blob/main/LICENSE)
+[![CI](https://github.com/coffee2021/uiaxpath/actions/workflows/ci.yml/badge.svg)](https://github.com/coffee2021/uiaxpath/actions/workflows/ci.yml)
+
 Windows UI 自动化的 XPath 子集引擎：把 UIA 控件树一次性建成**内存快照**，再用自研 XPath 在快照上查询。快照建好后查询阶段不再跨进程 COM（扩展属性除外），适合批量查询和反复调试表达式。
 
 配套的 GUI 工具见 [仓库主页](https://github.com/coffee2021/uiaxpath)。
@@ -167,10 +172,10 @@ from uiaxpath import (
 
 ## 测试
 
-仓库根目录下三套测试：
+仓库 `tests/` 下三套测试（需要本机有记事本用于活体回归）：
 
 ```bash
-python -X utf8 test_uiaxpath.py   # 引擎语法 85 项
-python -X utf8 test_extras.py     # 扩展属性 + 候选生成
-python -X utf8 test_picker.py     # 拾取映射
+python -X utf8 tests\test_uiaxpath.py   # 引擎语法 85 项
+python -X utf8 tests\test_extras.py     # 扩展属性 + 候选生成
+python -X utf8 tests\test_picker.py     # 拾取映射
 ```
