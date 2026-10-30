@@ -32,8 +32,6 @@ pip install -r requirements.txt
 python -X utf8 app.py
 ```
 
-或双击 `启动.bat`（内部用 pythonw 无控制台启动，路径按本机 Python 位置修改）。
-
 冒烟自检（自动快照首个窗口、跑一次查询、截图退出）：
 
 ```bash
@@ -95,8 +93,8 @@ uiaxpath/              引擎包（快照/XPath/候选/映射）
 ├── picker.py          活体控件→快照节点映射（纯函数，三级匹配）
 └── interactive.py     阻塞式热键拾取（开发辅助，勿用于生产脚本）
 requirements.txt       锁定依赖版本
-启动.bat                无控制台启动
 app.ico                软件图标
+docs\DESIGN.md         设计决策（快照模型、XPath 取舍、拾取三级匹配）
 tests\test_uiaxpath.py  三套测试
 ```
 
